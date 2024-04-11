@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils import timezone
+from datetime import timedelta
 from datetime import datetime
 from pytz import timezone as timenewzone
 def index(request):
@@ -43,8 +44,10 @@ def result(request,question_id):
     result_date=ques.result_date
     ind_time = datetime.now(timenewzone("Asia/Kolkata")).strftime('%Y-%m-%d %H:%M:%S.%f')
     cur_date = datetime.strptime(ind_time, '%Y-%m-%d %H:%M:%S.%f')
-    data['isShowResult']=False
-    current_date = timezone.make_aware(cur_date, timezone.utc)
+    current_date1 = timezone.make_aware(cur_date, timezone.utc)
+    current_date = timezone.now()
+    time_to_add = timedelta(hours=5, minutes=30)
+    current_date = current_date + time_to_add
     if current_date>result_date:
         data['isShowResult']=False
     else:
