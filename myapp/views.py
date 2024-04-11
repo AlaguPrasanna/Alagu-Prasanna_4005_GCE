@@ -44,7 +44,6 @@ def result(request,question_id):
     result_date=ques.result_date
     ind_time = datetime.now(timenewzone("Asia/Kolkata")).strftime('%Y-%m-%d %H:%M:%S.%f')
     cur_date = datetime.strptime(ind_time, '%Y-%m-%d %H:%M:%S.%f')
-    current_date1 = timezone.make_aware(cur_date, timezone.utc)
     current_date = timezone.now()
     time_to_add = timedelta(hours=5, minutes=30)
     current_date = current_date + time_to_add
